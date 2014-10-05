@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TictailSharp.Api", "TictailSharp.Api\TictailSharp.Api.csproj", "{B3F1D5B4-BB03-4A75-88D0-9E0BA628B1C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TictailSharp.Api.Test", "TictailSharp.Api.Test\TictailSharp.Api.Test.csproj", "{D0710B90-195A-4804-A53C-283A41E70243}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3F1D5B4-BB03-4A75-88D0-9E0BA628B1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F1D5B4-BB03-4A75-88D0-9E0BA628B1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F1D5B4-BB03-4A75-88D0-9E0BA628B1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F1D5B4-BB03-4A75-88D0-9E0BA628B1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D21608C4-2FDF-4CD8-ADAF-532F0D315A1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D21608C4-2FDF-4CD8-ADAF-532F0D315A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D21608C4-2FDF-4CD8-ADAF-532F0D315A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D21608C4-2FDF-4CD8-ADAF-532F0D315A1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0710B90-195A-4804-A53C-283A41E70243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0710B90-195A-4804-A53C-283A41E70243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0710B90-195A-4804-A53C-283A41E70243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0710B90-195A-4804-A53C-283A41E70243}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
