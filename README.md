@@ -2,6 +2,8 @@ This is an unofficial OpenSource .NET-implementation of the [Tictail API](https:
 
 This is implemented to work against the Tictail API using an API-Key, which can be obtained through the API test app (in Tictail, you need to open an developer account).
 
+[Download via NuGet](https://www.nuget.org/packages/TictailSharp/)
+
 How to use (C#)
     
     var endpoint = new TictailEndpoint(new Uri("https://api.tictail.com"), "accesstoken_[YOUR_API_KEY]");
