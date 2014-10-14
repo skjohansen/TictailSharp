@@ -1,18 +1,33 @@
 This is an unofficial OpenSource .NET-implementation of the [Tictail API](https://tictail.com/developers/documentation/api-reference/), available under MIT License.  
 
-This is implemented to work against the Tictail API using an API-Key, which can be obtained through the API test app (in Tictail, you need to open an developer account).
-
 [Download via NuGet](https://www.nuget.org/packages/TictailSharp/)
 
-How to use (C#)
+To use the Tictail API an access-token is needed.<br />
+When testing the easiest way to obtained an access-token is through the "Tictail API Explorer"-app (you need to open an developer account to find this in the app-store).<br />
+But the correct way to obtain an access-token when developing external apps, is to use the [Tictail OAuth](https://tictail.com/developers/documentation/authentication/) to trade the authorization-code for an access-token.
+
+How to obtain your access token using OAuth (C#):
+
+    var endpointAuth = new TictailEndpoint(new Uri("https://tictail.com"));
+    var repositoryAuth = new TictailRepository(endpointAuth);
+    var oauth = new Oauth()
+    {
+        AuthCode = "CODE", // eg. authcode_abcdefgh1234 (from app)
+        ClientId = "YOUR_CLIENT_ID", //eg. clientid_12345ABCDEFGH (see app-credentials)
+        ClientSecret = "YOUR_CLIENT_SECRET" // eg. clientsecret_asdf123 (see app-credentials)
+    };
+
+    var token = repositoryAuth.Oauth.Post(oauth);
+
+Example on how to fetch "who you are"-information (C#), uses the token from above:
     
-    var endpoint = new TictailEndpoint(new Uri("https://api.tictail.com"), "accesstoken_[YOUR_API_KEY]");
+    var endpoint = new TictailEndpoint(new Uri("https://api.tictail.com"), token.AccessToken);
     var repository = new TictailRepository(endpoint);
     var me = repository.Me.Get();
     Console.WriteLine(me.Name); // Outputs the storename
 	Console.WriteLine(me.Id); // Outputs the Tictail ID of your store
 
-List all orders (C#)
+List all orders (C#), uses the repository from above:
 					
 	var storeId = me.Id;
     var myStore = repository.Stores[storeId];
@@ -22,7 +37,7 @@ List all orders (C#)
     }
 
 
-Not yet implemented (2014-10-05):
+Not yet implemented (2014-10-15):
 
 * Card
 * In-App Purchase
