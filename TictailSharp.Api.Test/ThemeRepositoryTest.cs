@@ -62,7 +62,7 @@ namespace TictailSharp.Api.Test
         }
 
         /// <summary>
-        /// 404 - Store Not Found
+        /// 404 - Theme Not Found in store
         /// </summary>
         [Fact]
         public void GetStoreNotFound_Theme()
@@ -79,9 +79,9 @@ namespace TictailSharp.Api.Test
             clientTest.Content = tictailJsonReponse;
             clientTest.StatusCode = HttpStatusCode.NotFound;
             var repository = new TictailRepository(clientTest);
-            var ex = Assert.Throws<Exception>(delegate { repository.Stores.Get("someWrongId"); });
+            var ex = Assert.Throws<TictailException>(delegate { repository.Stores.Get("someWrongId"); });
 
-            Assert.Equal("No Store found with ID : someWrongId", ex.Message);
+            Assert.Equal("Not Found. You have requested this URI [/v1/stores/aaa/theme] but did you mean /v1/stores/<id:store_id>/theme or /v1/stores/<id:store_id>/orders or /v1/stores/<id:store_id>/customers ?", ex.Message);
         }
         #endregion
         

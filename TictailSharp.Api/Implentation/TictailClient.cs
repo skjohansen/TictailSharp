@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using RestSharp;
+using System;
 using System.Net;
-using RestSharp;
+using TictailSharp.Api.Model;
 
 namespace TictailSharp.Api.Implentation
 {
@@ -15,14 +15,17 @@ namespace TictailSharp.Api.Implentation
 
         public IRestResponse ExecuteRequest(IRestRequest request, HttpStatusCode expectedStatusCode)
         {
-            request.AddHeader("Authorization", "Bearer " + _endpoint.ApiKey);
+            if (_endpoint != null && !string.IsNullOrEmpty(_endpoint.ApiKey))
+            {
+                request.AddHeader("Authorization", "Bearer " + _endpoint.ApiKey);
+            }
             request.AddHeader("Content-Type", "application/json");
 
             var response = RestRequest(request);
 
             if (response.ResponseStatus != ResponseStatus.Completed)
             {
-                throw new Exception("Unknown response, ResponseStatus: " + response.ResponseStatus);
+                throw new Exception("Unknown status, ResponseStatus: " + response.ResponseStatus);
             }
 
             if (response.StatusCode == expectedStatusCode)
@@ -32,12 +35,17 @@ namespace TictailSharp.Api.Implentation
 
             if (response.StatusCode == HttpStatusCode.Forbidden)
             {
-                throw new Exception("Forbidden access, check the API key");
+                throw new TictailException(response.Content, "Forbidden access, check the API key");
+            }
+
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                throw new TictailException(response.Content, "No access, check your authcode, has it allready been used?");
             }
 
             if (response.StatusCode == HttpStatusCode.NotFound)
             {
-                throw new KeyNotFoundException();
+                throw new TictailException(response.Content, "Does the ressouce exist?");
             }
 
             throw new Exception("Unknown error, Statuscode: " + response.StatusDescription);

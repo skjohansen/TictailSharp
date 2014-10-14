@@ -5,8 +5,6 @@ namespace TictailSharp.Api.Test
 {
     public class CardRepositoryTest
     {
-                #region Test
-
         [Fact(Skip = "Not implemented")]
         public void Get_Ok_Card()
         {
@@ -22,6 +20,5 @@ namespace TictailSharp.Api.Test
         {
             throw new NotImplementedException();
         }
-                #endregion
     }
 }

@@ -8,6 +8,7 @@ namespace TictailSharp.Api.Implentation
 
         private IStoreRepository _storeRepository;
         private IMeRepository _meRepository;
+        private IOauthRespository _oauthRespository;
 
         public TictailRepository(TictailEndpoint endpoint)
             : this(new TictailClient(endpoint))
@@ -27,6 +28,11 @@ namespace TictailSharp.Api.Implentation
         public IMeRepository Me
         {
             get { return _meRepository ?? (_meRepository = new MeRepository(_client)); }
-        } 
+        }
+
+        public IOauthRespository Oauth
+        {
+            get { return _oauthRespository ?? (_oauthRespository = new OauthRepository(_client)); }
+        }
     }
 }

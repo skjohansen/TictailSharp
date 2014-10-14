@@ -1,7 +1,7 @@
 ﻿namespace TictailSharp.Api.Methods
 {
-    public interface IPost<in TResource>
+    public interface IPost<in TResource, out TReturn>
     {
-        string Post(TResource value);
+        TReturn Post(TResource value);
     }
 }

@@ -3,7 +3,7 @@ using TictailSharp.Api.Model;
 
 namespace TictailSharp.Api
 {
-    public interface ICardRepository : IStore, IPost<Card, string>
+    public interface IOauthRespository : IPost<Oauth, Token>
     {
     }
 }

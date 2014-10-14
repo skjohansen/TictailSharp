@@ -38,7 +38,7 @@ namespace TictailSharp.Api.Test
         }
         #endregion
 
-        #region
+        #region Test
 
         [Fact]
         public void Get_Ok_Store()
@@ -118,9 +118,9 @@ namespace TictailSharp.Api.Test
             clientTest.Content = tictailJsonReponse;
             clientTest.StatusCode = HttpStatusCode.NotFound;
             var repository = new TictailRepository(clientTest);
-            var ex = Assert.Throws<Exception>(delegate { repository.Stores.Get("someWrongId"); });
-            
-            Assert.Equal("No Store found with ID : someWrongId", ex.Message);
+            var ex = Assert.Throws<TictailException>(delegate { repository.Stores.Get("someWrongId"); });
+
+            Assert.Equal("Not Found. You have requested this URI [/v1/stores/a123445] but did you mean /v1/stores/<id:store_id> or /v1/stores or /v1/stores/<id:store_id>/apps ?", ex.Message);
         }
     
         #endregion

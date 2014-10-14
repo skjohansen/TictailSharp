@@ -49,6 +49,7 @@
     <Compile Include="ICardRepository.cs" />
     <Compile Include="ICategoryRepository.cs" />
     <Compile Include="ICustomerRepository.cs" />
+    <Compile Include="IOauthRespository.cs" />
     <Compile Include="Methods\IDelete.cs" />
     <Compile Include="IFollowerRepository.cs" />
     <Compile Include="Methods\IGet.cs" />
@@ -65,6 +66,9 @@
     <Compile Include="IStoreRepository.cs" />
     <Compile Include="IThemeRepository.cs" />
     <Compile Include="ITictailClient.cs" />
+    <Compile Include="Model\AccessStore.cs" />
+    <Compile Include="Model\TictailException.cs" />
+    <Compile Include="Model\Token.cs" />
     <Compile Include="Model\BaseProduct.cs" />
     <Compile Include="Model\BaseStore.cs" />
     <Compile Include="Model\BaseVat.cs" />
@@ -77,6 +81,7 @@
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\BaseItem.cs" />
     <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Oauth.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderItem.cs" />
     <Compile Include="Model\OrderProduct.cs" />
@@ -96,6 +101,7 @@
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\FollowerRepository.cs" />
     <Compile Include="Repository\MeRepository.cs" />
+    <Compile Include="Repository\OauthRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\StoreRepository.cs" />

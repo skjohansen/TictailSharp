@@ -58,6 +58,7 @@
     <Compile Include="CustomerRepositoryTest.cs" />
     <Compile Include="ClientTest.cs" />
     <Compile Include="FollowerRespositoryTest.cs" />
+    <Compile Include="OauthRepositoryTest.cs" />
     <Compile Include="OrderRepositoryTest.cs" />
     <Compile Include="ProductRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="StoreRepositoryTest.cs" />
     <Compile Include="TestImplementation\TictailClientTest.cs" />
     <Compile Include="ThemeRepositoryTest.cs" />
+    <Compile Include="TictailExceptionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TictailSharp.Api\TictailSharp.Api.csproj">
