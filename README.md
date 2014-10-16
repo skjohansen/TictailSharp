@@ -4,7 +4,7 @@ This is an unofficial OpenSource .NET-implementation of the [Tictail API](https:
 
 What is this?
 ===
-[Tictail](http://tictail.com) is an easy to use ecommerce platform, which is (currently) free of charge.
+[Tictail](http://tictail.com) is an easy to use SaaS ecommerce platform, which is (currently) free of charge.
 
 In Tictail have the users (shop owners) the possibility to add app to their store, these apps can both be free and cost money, and this is up to the developer.
 
