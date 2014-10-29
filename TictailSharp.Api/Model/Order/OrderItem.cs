@@ -1,9 +1,11 @@
-﻿using System.Globalization;
-using System.Text;
+﻿using System.Text;
 using Newtonsoft.Json;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Order
 {
+    /// <summary>
+    /// An order item, contains a product
+    /// </summary>
     public class OrderItem : BaseItem
     {
         /// <summary>
@@ -12,13 +14,14 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "product")]
         public OrderProduct Product { get; set; }
 
-
+        /// <summary>
+        /// Output all properties
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();
-            toString.Append("Price: ").AppendLine(Price.ToString(CultureInfo.InvariantCulture));
-            toString.Append("Currency: ").AppendLine(Currency);
-            toString.Append("Quantity: ").AppendLine(Quantity.ToString(CultureInfo.InvariantCulture));
+            toString.Append(base.ToString());
             toString.Append("Product: ").AppendLine(Product.ToString());
             return toString.ToString();
         }

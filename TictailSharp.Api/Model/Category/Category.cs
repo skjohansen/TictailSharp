@@ -3,13 +3,15 @@ using System.Globalization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Category
 {
     /// <summary>
-    /// The customer may always be right, we don't pretend to know. All customers that have made a purchase from a given store are found in this resource, though.
+    /// The product categories are shown as the store's navigation and allow customers to filter the displayed products by categories that they find interesting.
+    /// Categories are implemented as a classical parent-child hierarchy, but is limited to one level of depth. In other words, there could be a parent category called "Clothes" which has the categories "Jeans", "T-Shirts" and more as children.
     /// </summary>
-    public class Customer
+    public class Category
     {
+
         /// <summary>
         /// Unique identifier
         /// </summary>
@@ -17,29 +19,31 @@ namespace TictailSharp.Api.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Email to the customer, note that this can be a proxy email address
+        /// Title of this category
         /// </summary>
-        [JsonProperty(PropertyName = "email")]
-        public string Email { get; set; }
+        [JsonProperty(PropertyName = "title")]
+        public string Title { get; set; }
+
 
         /// <summary>
-        /// Full name of the customer
+        /// Parent id of this category, null for top level categories
         /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        [JsonProperty(PropertyName = "parent_id")]
+        public string ParentId { get; set; }
+
 
         /// <summary>
-        /// Country of the customer as a two-letter code (ISO 3166-1)
+        /// Which position this item has relative to it's parent
         /// </summary>
-        [JsonProperty(PropertyName = "country")]
-        public string Country { get; set; }
+        [JsonProperty(PropertyName = "position")]
+        public int Position { get; set; }
 
         /// <summary>
-        /// Preferred language of the customers as a two-letter code (ISO 639-1)
+        /// Number of products in this category
         /// </summary>
-        [JsonProperty(PropertyName = "language")]
-        public string Language { get; set; }
-
+        [JsonProperty(PropertyName = "product_count")]
+        public int ProductCount { get; set; }
+        
         /// <summary>
         /// Timestamp when this product was created
         /// </summary>
@@ -54,14 +58,17 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "modified_at")]
         public DateTime? ModifiedAt { get; set; }
 
+        /// <summary>
+        /// Output all properties
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();
             toString.Append("ID: ").AppendLine(Id);
-            toString.Append("Email: ").AppendLine(Email);
-            toString.Append("Name: ").AppendLine(Name);
-            toString.Append("Country: ").AppendLine(Country);
-            toString.Append("Language: ").AppendLine(Language);
+            toString.Append("Title: ").AppendLine(Title);
+            toString.Append("ParentId: ").AppendLine(ParentId);
+            toString.Append("Position: ").AppendLine(Position.ToString(CultureInfo.InvariantCulture));
             toString.Append("CreatedAt: ").AppendLine(CreatedAt.ToString(CultureInfo.InvariantCulture));
             if (ModifiedAt.HasValue)
             {

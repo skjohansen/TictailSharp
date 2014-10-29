@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\TictailSharp.Api.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -66,35 +67,38 @@
     <Compile Include="IStoreRepository.cs" />
     <Compile Include="IThemeRepository.cs" />
     <Compile Include="ITictailClient.cs" />
-    <Compile Include="Model\AccessStore.cs" />
+    <Compile Include="Model\BaseCustomer.cs" />
+    <Compile Include="Model\BaseVariation.cs" />
+    <Compile Include="Model\Oauth\AccessStore.cs" />
+    <Compile Include="Model\Order\OrderCustomer.cs" />
+    <Compile Include="Model\Order\OrderVariation.cs" />
     <Compile Include="Model\TictailException.cs" />
-    <Compile Include="Model\Token.cs" />
+    <Compile Include="Model\Oauth\Token.cs" />
     <Compile Include="Model\BaseProduct.cs" />
     <Compile Include="Model\BaseStore.cs" />
     <Compile Include="Model\BaseVat.cs" />
-    <Compile Include="Model\Card.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Customer.cs" />
-    <Compile Include="Model\Discount.cs" />
-    <Compile Include="Model\Follower.cs" />
-    <Compile Include="Model\Fullfillment.cs" />
-    <Compile Include="Model\Image.cs" />
+    <Compile Include="Model\Card\Card.cs" />
+    <Compile Include="Model\Category\Category.cs" />
+    <Compile Include="Model\Customer\Customer.cs" />
+    <Compile Include="Model\Order\Discount.cs" />
+    <Compile Include="Model\Follower\Follower.cs" />
+    <Compile Include="Model\Order\Fullfillment.cs" />
+    <Compile Include="Model\Product\Image.cs" />
     <Compile Include="Model\BaseItem.cs" />
-    <Compile Include="Model\Item.cs" />
-    <Compile Include="Model\Oauth.cs" />
-    <Compile Include="Model\Order.cs" />
-    <Compile Include="Model\OrderItem.cs" />
-    <Compile Include="Model\OrderProduct.cs" />
-    <Compile Include="Model\OrderVat.cs" />
-    <Compile Include="Model\Product.cs" />
-    <Compile Include="Model\Reciver.cs" />
-    <Compile Include="Model\ShippingAlternative.cs" />
-    <Compile Include="Model\Store.cs" />
-    <Compile Include="Model\Me.cs" />
-    <Compile Include="Model\Theme.cs" />
-    <Compile Include="Model\Transaction.cs" />
-    <Compile Include="Model\Variation.cs" />
-    <Compile Include="Model\Vat.cs" />
+    <Compile Include="Model\Oauth\Oauth.cs" />
+    <Compile Include="Model\Order\Order.cs" />
+    <Compile Include="Model\Order\OrderItem.cs" />
+    <Compile Include="Model\Order\OrderProduct.cs" />
+    <Compile Include="Model\Order\OrderVat.cs" />
+    <Compile Include="Model\Product\Product.cs" />
+    <Compile Include="Model\Order\Reciver.cs" />
+    <Compile Include="Model\Order\ShippingAlternative.cs" />
+    <Compile Include="Model\Store\Store.cs" />
+    <Compile Include="Model\Me\Me.cs" />
+    <Compile Include="Model\Theme\Theme.cs" />
+    <Compile Include="Model\Order\Transaction.cs" />
+    <Compile Include="Model\Product\Variation.cs" />
+    <Compile Include="Model\Store\Vat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CardRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
@@ -109,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\InApp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

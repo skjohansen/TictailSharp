@@ -3,8 +3,11 @@ using System.Globalization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Order
 {
+    /// <summary>
+    /// The discount of an order
+    /// </summary>
     public class Discount
     {
         /// <summary>
@@ -50,9 +53,7 @@ namespace TictailSharp.Api.Model
         public bool Storewide { get; set; }
 
         // TODO: Implement
-        /// <summary>
-        /// Which categories and products is this discount applicable to
-        /// </summary>
+        // Comment : Which categories and products is this discount applicable to
         //[JsonProperty(PropertyName = "applicable_to")]
         //public string ApplicableTo { get; set; }
 
@@ -79,7 +80,10 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "currency")]
         public string Currency { get; set; }
 
-
+        /// <summary>
+        /// Output all properties
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();

@@ -2,27 +2,42 @@
 
 namespace TictailSharp.Api.Implentation
 {
+    /// <summary>
+    /// Defines the information needed to access the Tictail API
+    /// </summary>
     public class TictailEndpoint
     {
         private readonly Uri _tictailServer;
-        private string _apiKey;
 
-        // Support of OAuth
-        // https://tictail.com/developers/documentation/authentication/#External_Apps   
-
+        /// <summary>
+        /// Constructor with URL
+        /// </summary>
+        /// <param name="url">URL to the Tictail API</param>
         public TictailEndpoint(Uri url)
         {
             _tictailServer = url;
         }
 
-        public TictailEndpoint(Uri url, string apikey)
+        /// <summary>
+        /// Constructor with URL and AccessToken
+        /// </summary>
+        /// <param name="url">URL to the Tictail API</param>
+        /// <param name="accessToken">AccessToken which identifies the user with the API</param>
+        public TictailEndpoint(Uri url, string accessToken)
         {
-            _apiKey = apikey;
+            AccessToken = accessToken;
             _tictailServer = url;
            
         }
 
-        public string ApiKey { get { return _apiKey; } set { _apiKey = value; } }
+        /// <summary>
+        /// AccessToken which identifies the user with the API
+        /// </summary>
+        public string AccessToken { get; set; }
+
+        /// <summary>
+        /// URL to the Tictail API
+        /// </summary>
         public Uri TictailServerUri {get { return _tictailServer; }}
     }
 }

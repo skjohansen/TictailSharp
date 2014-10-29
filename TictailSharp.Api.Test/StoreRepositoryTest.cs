@@ -2,6 +2,7 @@
 using System.Net;
 using TictailSharp.Api.Implentation;
 using TictailSharp.Api.Model;
+using TictailSharp.Api.Model.Store;
 using TictailSharp.Api.Test.TestImplementation;
 using Xunit;
 

@@ -4,8 +4,11 @@ using System.Globalization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Order
 {
+    /// <summary>
+    /// An order in Tictail
+    /// </summary>
     public class Order
     {
         /// <summary>
@@ -67,7 +70,7 @@ namespace TictailSharp.Api.Model
         /// Customer, see customer object for details
         /// </summary>
         [JsonProperty(PropertyName = "customer")]
-        public Customer Customer { get; set; }
+        public OrderCustomer Customer { get; set; }
         
         /// <summary>
         /// VAT applied for this order, see VAT object for details
@@ -107,6 +110,10 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "modified_at")]
         public DateTime? ModifiedAt { get; set; }
 
+        /// <summary>
+        /// Output all properties
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();

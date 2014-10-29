@@ -3,24 +3,41 @@ using System.Collections.Generic;
 using System.Net;
 using Newtonsoft.Json;
 using RestSharp;
-using TictailSharp.Api.Model;
+using TictailSharp.Api.Model.Store;
 
 namespace TictailSharp.Api.Repository
 {
+    /// <summary>
+    /// Store repository
+    /// </summary>
     public class StoreRepository : IStoreRepository
     {
         private readonly ITictailClient _client;
 
+        /// <summary>
+        /// Construct Store repositiory
+        /// </summary>
+        /// <param name="client">Tictail client</param>
         public StoreRepository(ITictailClient client)
         {
             _client = client;
         }
 
-        public Store this[string idOrHref]
+        /// <summary>
+        /// Get Store from Tictail API
+        /// </summary>
+        /// <param name="storeId">ID of store to retrive</param>
+        /// <returns>A Store</returns>
+        public Store this[string storeId]
         {
-            get { return Get(idOrHref); }
+            get { return Get(storeId); }
         }
 
+        /// <summary>
+        /// Get Store from Tictail API
+        /// </summary>
+        /// <param name="storeId">ID of store to retrive</param>
+        /// <returns>A Store</returns>
         public Store Get(string storeId)
         {
             if (string.IsNullOrEmpty(storeId))
@@ -35,7 +52,7 @@ namespace TictailSharp.Api.Repository
             {
                 store = DeserializeGet(_client.ExecuteRequest(request, HttpStatusCode.OK).Content);
             }
-            catch (KeyNotFoundException kex)
+            catch (KeyNotFoundException)
             {
                 throw new Exception("No Store found with ID : " + storeId);
             }
@@ -48,15 +65,15 @@ namespace TictailSharp.Api.Repository
             return store;
         }
 
-        public Store DeserializeGet(string value)
+        /// <summary>
+        /// Deserilize the Store data fetched from the Tictail API
+        /// </summary>
+        /// <param name="data">Store JSON data</param>
+        /// <returns>A Store</returns>
+        public Store DeserializeGet(string data)
         {
-            return DeserializeGet(value, "[undefined]");
+            return JsonConvert.DeserializeObject<Store>(data);
         }
 
-        public Store DeserializeGet(string value, string storeId)
-        {
-            return JsonConvert.DeserializeObject<Store>(value);
-
-        }
     }
 }

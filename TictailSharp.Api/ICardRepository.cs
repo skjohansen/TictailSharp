@@ -1,9 +1,12 @@
 ﻿using TictailSharp.Api.Methods;
-using TictailSharp.Api.Model;
+using TictailSharp.Api.Model.Card;
 
 namespace TictailSharp.Api
 {
-    public interface ICardRepository : IStore, IPost<Card, string>
+    /// <summary>
+    /// Card repository interface
+    /// </summary>
+    public interface ICardRepository : IStore, IPost<Card, string>, IGetSpecific<Card>
     {
     }
 }

@@ -35,18 +35,21 @@ namespace TictailSharp.Api.Test.TestImplementation
             response.StatusCode = StatusCode;
             response.ResponseStatus = ResponseStatus;
             response.Content = Content;
-            if (ResponseHeaders != null)
+            
+            if (ResponseHeaders == null)
             {
-                foreach (var header in ResponseHeaders)
-                {
-                    response.Headers.Add(new Parameter()
-                    {
-                        Name = header.Key,
-                        Value = header.Value,
-                        Type = ParameterType.HttpHeader
-                    });
+                return response;
+            }
 
-                }
+            foreach (var header in ResponseHeaders)
+            {
+                response.Headers.Add(new Parameter()
+                {
+                    Name = header.Key,
+                    Value = header.Value,
+                    Type = ParameterType.HttpHeader
+                });
+
             }
 
             return response;

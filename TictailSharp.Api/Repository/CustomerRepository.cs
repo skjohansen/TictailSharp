@@ -4,20 +4,33 @@ using System.Collections.Generic;
 using System.Net;
 using Newtonsoft.Json;
 using RestSharp;
-using TictailSharp.Api.Model;
+using TictailSharp.Api.Model.Customer;
 
 namespace TictailSharp.Api.Repository
 {
+    /// <summary>
+    /// Customer repository
+    /// </summary>
     public class CustomerRepository : ICustomerRepository
     {
         private readonly ITictailClient _client;
 
+        /// <summary>
+        /// Construct Customer repositiory
+        /// </summary>
+        /// <param name="client">Tictail client</param>
+        /// <param name="storeId">ID of Tictail store to retrive Customer from</param>
         public CustomerRepository(ITictailClient client, string storeId)
         {
             _client = client;
             StoreId = storeId;
         }
 
+        /// <summary>
+        /// Get a Customer from Tictail API
+        /// </summary>
+        /// <param name="customerId">ID of the Customer</param>
+        /// <returns>A specific Customer</returns>
         public Customer Get(string customerId)
         {
             if (string.IsNullOrEmpty(customerId))
@@ -41,24 +54,21 @@ namespace TictailSharp.Api.Repository
                 return DeserializeGet(content);
 
             }
-            catch (KeyNotFoundException kex)
+            catch (KeyNotFoundException)
             {
                 throw new Exception("No Customer found with ID : " + customerId + ", at store : " + StoreId);
             }
         }
 
-        public IEnumerator<Customer> GetRange()
-        {
-            return GetRangeFull();
-        }
+
 
         /// <summary>
-        /// 
+        /// Get all Customers, or a specific range
         /// </summary>
-        /// <param name="after">Only get customers after this id Defaults to the first customer.</param>
-        /// <param name="before">Only get customers before this id</param>
+        /// <param name="after">Only get Customers after this id Defaults to the first customer.</param>
+        /// <param name="before">Only get Customers before this id</param>
         /// <param name="limit">Limit number of customers returned (default 100)</param>
-        /// <returns></returns>
+        /// <returns>An enumerator of Customers</returns>
         public IEnumerator<Customer> GetRangeFull(string after=null, string before = null, uint limit = 100)
         {
             if (string.IsNullOrEmpty(StoreId))
@@ -89,39 +99,73 @@ namespace TictailSharp.Api.Repository
                 string content = _client.ExecuteRequest(request, HttpStatusCode.OK).Content;
                 return DeserializeRangeGet(content);
             }
-            catch (KeyNotFoundException kex)
+            catch (KeyNotFoundException)
             {
                 //TODO: Can there also be an error if wrong afterProductId, beforeProductId, limit ??
                 throw new Exception("No Store found with ID : " + StoreId);
             }
         }
 
-        public IEnumerator<Customer> GetEnumerator()
+        /// <summary>
+        /// Get enumerator of all Customers
+        /// </summary>
+        /// <returns>An enumerator of Customers</returns>
+        public IEnumerator<Customer> GetRange()
         {
-            return GetRangeFull(null, null, 100000U);
+            return GetRangeFull();
         }
 
+        /// <summary>
+        /// Get enumerator of all Customers
+        /// </summary>
+        /// <returns>An enumerator of Customers</returns>
+        public IEnumerator<Customer> GetEnumerator()
+        {
+            return GetRange();
+        }
+
+        /// <summary>
+        /// Get enumerator of all Customers
+        /// </summary>
+        /// <returns>An enumerator of Customers</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
+        /// <summary>
+        /// ID of store to fetch Product from
+        /// </summary>
         public string StoreId { get; set; }
 
+        /// <summary>
+        /// Get a Customer from Tictail API
+        /// </summary>
+        /// <param name="customerId">ID of the customer</param>
+        /// <returns>A specific Customer</returns>
         public Customer this[string customerId]
         {
             get { return Get(customerId); }
         }
 
-
-        public IEnumerator<Customer> DeserializeRangeGet(string value)
+        /// <summary>
+        /// Deserlize array of customers
+        /// </summary>
+        /// <param name="data">JSON array of customers</param>
+        /// <returns>An enumerator of Customers</returns>
+        public IEnumerator<Customer> DeserializeRangeGet(string data)
         {
-            return JsonConvert.DeserializeObject<List<Customer>>(value).GetEnumerator();
+            return JsonConvert.DeserializeObject<List<Customer>>(data).GetEnumerator();
         }
 
-        public Customer DeserializeGet(string value)
+        /// <summary>
+        /// Deserlize an customer
+        /// </summary>
+        /// <param name="data">JSON data of a customer</param>
+        /// <returns>A Customer</returns>
+        public Customer DeserializeGet(string data)
         {
-            return JsonConvert.DeserializeObject<Customer>(value);
+            return JsonConvert.DeserializeObject<Customer>(data);
         }
 
 

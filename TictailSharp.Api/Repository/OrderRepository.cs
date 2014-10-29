@@ -4,38 +4,33 @@ using System.Collections.Generic;
 using System.Net;
 using Newtonsoft.Json;
 using RestSharp;
-using TictailSharp.Api.Model;
+using TictailSharp.Api.Model.Order;
 
 namespace TictailSharp.Api.Repository
 {
+    /// <summary>
+    /// Order repository
+    /// </summary>
     public class OrderRepository : IOrderRepository
     {
         private readonly ITictailClient _client;
 
+        /// <summary>
+        /// Construct Order repositiory
+        /// </summary>
+        /// <param name="client">Tictail client</param>
+        /// <param name="storeId">ID of Tictail store to retrive Order from</param>
         public OrderRepository(ITictailClient client, string storeId)
         {
             _client = client;
             StoreId = storeId;
         }
 
-        public IEnumerator<Order> GetEnumerator()
-        {
-            return GetRange();
-        }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-        
-        public Order this[string index]
-        {
-            get { return Get(index); }
-        }
-
-        public string StoreId { get; set; }
-
-        
+        /// <summary>
+        /// Get all Orders
+        /// </summary>
+        /// <returns>An enumerator of orders</returns>
         public IEnumerator<Order> GetRange()
         {
             if (string.IsNullOrEmpty(StoreId))
@@ -52,17 +47,17 @@ namespace TictailSharp.Api.Repository
                 string content = _client.ExecuteRequest(request, HttpStatusCode.OK).Content;
                 return DeserializeRangeGet(content);
             }
-            catch (KeyNotFoundException kex)
+            catch (KeyNotFoundException)
             {
                 throw new Exception("No Store found with ID : " + StoreId);
             }
         }
 
-        public IEnumerator<Order> DeserializeRangeGet(string value)
-        {
-            return JsonConvert.DeserializeObject<List<Order>>(value).GetEnumerator();
-        }
-
+        /// <summary>
+        /// Get an Order from Tictail API
+        /// </summary>
+        /// <param name="orderId">ID of the Order</param>
+        /// <returns>A specific Order</returns>
         public Order Get(string orderId)
         {
             if (string.IsNullOrEmpty(orderId))
@@ -86,19 +81,63 @@ namespace TictailSharp.Api.Repository
                 return DeserializeGet(content);
 
             }
-            catch (KeyNotFoundException kex)
+            catch (KeyNotFoundException)
             {
                 throw new Exception("No Order found with ID : " + orderId + ", at store : " + StoreId);
             }
         }
 
-        public Order DeserializeGet(string value)
+        /// <summary>
+        /// Get all orders
+        /// </summary>
+        /// <returns>An enumerator of orders</returns>
+        public IEnumerator<Order> GetEnumerator()
         {
-            return JsonConvert.DeserializeObject<Order>(value);
+            return GetRange();
         }
 
+        /// <summary>
+        /// Get all orders
+        /// </summary>
+        /// <returns>An enumerator of orders</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
+        /// <summary>
+        /// Get an Order from Tictail API
+        /// </summary>
+        /// <param name="orderId">ID of the order</param>
+        /// <returns>A specific order</returns>
+        public Order this[string orderId]
+        {
+            get { return Get(orderId); }
+        }
 
+        /// <summary>
+        /// Get or Set ID of store to fetch Product from
+        /// </summary>
+        public string StoreId { get; set; }
 
+        /// <summary>
+        /// Deserlize an Order
+        /// </summary>
+        /// <param name="data">JSON of a Order</param>
+        /// <returns>An Order</returns>
+        public Order DeserializeGet(string data)
+        {
+            return JsonConvert.DeserializeObject<Order>(data);
+        }
+
+        /// <summary>
+        /// Deserlize array of Orders
+        /// </summary>
+        /// <param name="data">JSON array of Orders</param>
+        /// <returns>An enumerator of Orders</returns>
+        public IEnumerator<Order> DeserializeRangeGet(string data)
+        {
+            return JsonConvert.DeserializeObject<List<Order>>(data).GetEnumerator();
+        }
     }
 }

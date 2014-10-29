@@ -1,7 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System.Globalization;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace TictailSharp.Api.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class BaseItem
     {
         /// <summary>
@@ -22,5 +27,17 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "quantity")]
         public int Quantity { get; set; }
 
+        /// <summary>
+        /// Outputs all properties
+        /// </summary>
+        /// <returns>A string</returns>
+        public override string ToString()
+        {
+            var toString = new StringBuilder();
+            toString.Append("Price: ").AppendLine(Price.ToString(CultureInfo.InvariantCulture));
+            toString.Append("Currency: ").AppendLine(Currency);
+            toString.Append("Quantity: ").AppendLine(Quantity.ToString(CultureInfo.InvariantCulture));
+            return toString.ToString();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Net;
 using RestSharp;
 using TictailSharp.Api.Model;
+using TictailSharp.Api.Model.Oauth;
 using TictailSharp.Api.Repository;
 using TictailSharp.Api.Test.TestImplementation;
 using Xunit;

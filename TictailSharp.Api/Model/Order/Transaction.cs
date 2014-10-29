@@ -3,8 +3,11 @@ using System.Globalization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Order
 {
+    /// <summary>
+    /// Transaction part of order
+    /// </summary>
     public class Transaction
     {
         /// <summary>
@@ -31,6 +34,10 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "paid_at")]
         public DateTime PaidAt { get; set; }
 
+        /// <summary>
+        /// Output all properties
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();

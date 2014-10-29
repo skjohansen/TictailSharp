@@ -4,8 +4,11 @@ using System.Globalization;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Product
 {
+    /// <summary>
+    /// Image of an product
+    /// </summary>
     public struct Image
     {
         /// <summary>
@@ -50,6 +53,10 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "sizes")]
         public Dictionary<string, string> Sizes { get; set; }
 
+        /// <summary>
+        /// Output all properties
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();

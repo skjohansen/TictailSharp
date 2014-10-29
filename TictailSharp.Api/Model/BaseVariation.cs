@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Globalization;
 using System.Text;
-using Newtonsoft.Json;
 
 namespace TictailSharp.Api.Model
 {
-    public struct Variation
+    /// <summary>
+    /// Base properties of an variation
+    /// </summary>
+    public abstract class BaseVariation
     {
         /// <summary>
         /// Unique identifier
@@ -43,6 +46,10 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "modified_at")]
         public DateTime ModifiedAt { get; set; }
 
+        /// <summary>
+        /// Output all properties
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();

@@ -1,6 +1,6 @@
 ﻿using System;
 using TictailSharp.Api.Implentation;
-using TictailSharp.Api.Model;
+using TictailSharp.Api.Model.Me;
 using TictailSharp.Api.Test.TestImplementation;
 using Xunit;
 

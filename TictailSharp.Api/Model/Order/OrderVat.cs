@@ -2,8 +2,11 @@
 using System.Text;
 using Newtonsoft.Json;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Order
 {
+    /// <summary>
+    /// Vat for orders
+    /// </summary>
     public class OrderVat : BaseVat
     {
         /// <summary>
@@ -18,10 +21,14 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "currency")]
         public string Currency { get; set; }
 
+        /// <summary>
+        /// ToString
+        /// </summary>
+        /// <returns>String containing all properties of OrderVat</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();
-            toString.Append("Rate: ").AppendLine(Rate.ToString(CultureInfo.InvariantCulture));
+            toString.Append(base.ToString());
             toString.Append("Price: ").AppendLine(Price.ToString(CultureInfo.InvariantCulture));
             toString.Append("Currency: ").AppendLine(Currency);
             return toString.ToString();

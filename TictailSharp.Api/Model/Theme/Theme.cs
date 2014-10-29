@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Theme
 {
     /// <summary>
     /// Your theme is what makes up your digital store, its beauty is what'll sway customers your way. The Theme endpoint provides easy access to the HTML code with the mustache tags unrendered, leaving you with the choice of what to do. Use it to validate or modify the theme, its up to you - play to your hearts content!
@@ -21,6 +21,10 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "markup")]
         public string Markup { get; set; }
 
+        /// <summary>
+        /// Output all properties
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using TictailSharp.Api.Implentation;
-using TictailSharp.Api.Model;
+using TictailSharp.Api.Model.Follower;
 using TictailSharp.Api.Repository;
 using TictailSharp.Api.Test.TestImplementation;
 using Xunit;

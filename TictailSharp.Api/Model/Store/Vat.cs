@@ -1,9 +1,11 @@
-﻿using System.Globalization;
-using System.Text;
+﻿using System.Text;
 using Newtonsoft.Json;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Store
 {
+    /// <summary>
+    /// Vat for stores
+    /// </summary>
     public class Vat : BaseVat
     {
 
@@ -25,10 +27,14 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "applied_to_shipping")]
         public bool AppliedToShipping { get; set; }
 
+        /// <summary>
+        /// ToString
+        /// </summary>
+        /// <returns>String containing all properties of Vat</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();
-            toString.Append("Rate: ").AppendLine(Rate.ToString(CultureInfo.InvariantCulture));
+            toString.Append(base.ToString());
             toString.Append("Region: ").AppendLine(Region);
             toString.Append("IncludedInPrices: ").AppendLine(IncludedInPrices.ToString());
             toString.Append("AppliedToShipping: ").AppendLine(AppliedToShipping.ToString());

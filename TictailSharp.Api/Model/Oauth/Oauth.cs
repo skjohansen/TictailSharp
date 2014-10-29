@@ -1,16 +1,34 @@
 ﻿using System;
 using System.Text;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Oauth
 {
+    /// <summary>
+    /// Oauth used for Authentication
+    /// </summary>
     public class Oauth
     {
         private const string GrantTypeAuthorizationCode = "authorization_code";
 
+        /// <summary>
+        /// ClientId for Tictail App
+        /// </summary>
         public string ClientId { get; set; }
+
+        /// <summary>
+        /// ClientSecret for Tictail App
+        /// </summary>
         public string ClientSecret { get; set; }
+
+        /// <summary>
+        /// AuthCode recived from Tictail
+        /// </summary>
         public string AuthCode { get; set; }
 
+        /// <summary>
+        /// Generate the body send to Tictail
+        /// </summary>
+        /// <returns>A string of the correctly formed body send to Tictail to retrive an AccessToken</returns>
         public string GenerateBody()
         {
             if (string.IsNullOrEmpty(ClientId))
@@ -36,6 +54,10 @@ namespace TictailSharp.Api.Model
             return oauthBody.ToString();
         }
 
+        /// <summary>
+        /// All properties of the Oauth
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();

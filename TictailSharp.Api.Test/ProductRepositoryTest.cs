@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TictailSharp.Api.Implentation;
-using TictailSharp.Api.Model;
+using TictailSharp.Api.Model.Product;
 using TictailSharp.Api.Repository;
 using TictailSharp.Api.Test.TestImplementation;
 using Xunit;

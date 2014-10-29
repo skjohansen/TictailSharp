@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 using Newtonsoft.Json;
+using TictailSharp.Api.Model.Product;
 
 namespace TictailSharp.Api.Model
 {
+    /// <summary>
+    /// Base product which defines all comon parts of products
+    /// </summary>
     public abstract class BaseProduct
     {
         /// <summary>
@@ -106,7 +112,7 @@ namespace TictailSharp.Api.Model
         /// Which categories does this product belong to?
         /// </summary>
         [JsonProperty(PropertyName = "categories")]
-        public List<Category> Categories { get; set; }
+        public List<Category.Category> Categories { get; set; }
 
         /// <summary>
         /// Timestamp when this product was created
@@ -122,5 +128,37 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "modified_at")]
         public DateTime? ModifiedAt { get; set; }
 
+        /// <summary>
+        /// Output all properties
+        /// </summary>
+        /// <returns>A string</returns>
+        public override string ToString()
+        {
+            var toString = new StringBuilder();
+            toString.Append("ID: ").AppendLine(Id);
+            toString.Append("Title: ").AppendLine(Title);
+            toString.Append("Description: ").AppendLine(Description);
+            toString.Append("Status: ").AppendLine(Status);
+            toString.Append("Price: ").AppendLine(Price.ToString(CultureInfo.InvariantCulture));
+            toString.Append("Currency: ").AppendLine(Currency);
+            toString.Append("Slug: ").AppendLine(Slug);
+            toString.Append("Unlimited: ").AppendLine(Unlimited.ToString());
+            if (Quantity.HasValue)
+            {
+                toString.Append("Quantity: ").AppendLine(Quantity.Value.ToString(CultureInfo.InvariantCulture));
+            }
+            toString.Append("CreatedAt: ").AppendLine(CreatedAt.ToString(CultureInfo.InvariantCulture));
+            if (ModifiedAt.HasValue)
+            {
+                toString.Append("ModifiedAt: ").AppendLine(ModifiedAt.Value.ToString(CultureInfo.InvariantCulture)).AppendLine();
+            }
+            toString.AppendLine().Append("Images: ").AppendLine(Images.Count.ToString(CultureInfo.InvariantCulture));
+            foreach (var image in Images)
+            {
+                toString.AppendLine(image.ToString());
+            }
+
+            return toString.ToString();
+        }
     }
 }

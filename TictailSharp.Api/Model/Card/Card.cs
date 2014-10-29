@@ -1,5 +1,8 @@
-﻿namespace TictailSharp.Api.Model
+﻿namespace TictailSharp.Api.Model.Card
 {
+    /// <summary>
+    /// TODO Needs to be implemented
+    /// </summary>
     public class Card
     {
         // //id

@@ -1,8 +1,11 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 
-namespace TictailSharp.Api.Model
+namespace TictailSharp.Api.Model.Order
 {
+    /// <summary>
+    /// Reciver of the order
+    /// </summary>
     public class Reciver
     {
         /// <summary>
@@ -47,6 +50,10 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "country")]
         public string Country { get; set; }
 
+        /// <summary>
+        /// Output all properties
+        /// </summary>
+        /// <returns>A string</returns>
         public override string ToString()
         {
             var toString = new StringBuilder();
