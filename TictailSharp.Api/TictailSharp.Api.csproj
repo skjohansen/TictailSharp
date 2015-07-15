@@ -31,12 +31,13 @@
     <DocumentationFile>bin\Release\TictailSharp.Api.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=105.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,26 +48,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICardRepository.cs" />
-    <Compile Include="ICategoryRepository.cs" />
-    <Compile Include="ICustomerRepository.cs" />
-    <Compile Include="IOauthRespository.cs" />
+    <Compile Include="Resources\ICardResource.cs" />
+    <Compile Include="Resources\ICategoryResource.cs" />
+    <Compile Include="Resources\ICustomerResource.cs" />
+    <Compile Include="Resources\IOauthResource.cs" />
     <Compile Include="Methods\IDelete.cs" />
-    <Compile Include="IFollowerRepository.cs" />
+    <Compile Include="Resources\IFollowerResource.cs" />
     <Compile Include="Methods\IGet.cs" />
     <Compile Include="Methods\IGetRange.cs" />
     <Compile Include="Methods\IGetSpecific.cs" />
-    <Compile Include="IMeRepository.cs" />
+    <Compile Include="Resources\IMeResource.cs" />
     <Compile Include="Implentation\TictailClient.cs" />
     <Compile Include="Implentation\TictailEndpoint.cs" />
     <Compile Include="Implentation\TictailRepository.cs" />
-    <Compile Include="IOrderRepository.cs" />
+    <Compile Include="Resources\IOrderResource.cs" />
+    <Compile Include="Methods\IPatch.cs" />
     <Compile Include="Methods\IPost.cs" />
-    <Compile Include="IProductRepository.cs" />
-    <Compile Include="IStore.cs" />
-    <Compile Include="IStoreRepository.cs" />
-    <Compile Include="IThemeRepository.cs" />
+    <Compile Include="Resources\IProductResource.cs" />
+    <Compile Include="Resources\IStore.cs" />
+    <Compile Include="Resources\IStoreResource.cs" />
+    <Compile Include="Resources\IThemeResource.cs" />
     <Compile Include="ITictailClient.cs" />
+    <Compile Include="Methods\IPut.cs" />
     <Compile Include="Model\BaseCustomer.cs" />
     <Compile Include="Model\BaseVariation.cs" />
     <Compile Include="Model\Oauth\AccessStore.cs" />
@@ -100,16 +103,16 @@
     <Compile Include="Model\Product\Variation.cs" />
     <Compile Include="Model\Store\Vat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\CardRepository.cs" />
-    <Compile Include="Repository\CategoryRepository.cs" />
-    <Compile Include="Repository\CustomerRepository.cs" />
-    <Compile Include="Repository\FollowerRepository.cs" />
-    <Compile Include="Repository\MeRepository.cs" />
-    <Compile Include="Repository\OauthRepository.cs" />
-    <Compile Include="Repository\OrderRepository.cs" />
-    <Compile Include="Repository\ProductRepository.cs" />
-    <Compile Include="Repository\StoreRepository.cs" />
-    <Compile Include="Repository\ThemeRepository.cs" />
+    <Compile Include="Resources\CardResource.cs" />
+    <Compile Include="Resources\CategoryResource.cs" />
+    <Compile Include="Resources\CustomerResource.cs" />
+    <Compile Include="Resources\FollowerResource.cs" />
+    <Compile Include="Resources\MeResource.cs" />
+    <Compile Include="Resources\OauthResource.cs" />
+    <Compile Include="Resources\OrderResource.cs" />
+    <Compile Include="Resources\ProductResource.cs" />
+    <Compile Include="Resources\StoreResource.cs" />
+    <Compile Include="Resources\ThemeResource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

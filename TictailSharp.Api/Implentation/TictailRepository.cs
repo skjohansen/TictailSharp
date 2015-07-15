@@ -1,4 +1,4 @@
-﻿using TictailSharp.Api.Repository;
+﻿using TictailSharp.Api.Resources;
 
 namespace TictailSharp.Api.Implentation
 {
@@ -9,9 +9,9 @@ namespace TictailSharp.Api.Implentation
     {
         private readonly ITictailClient _client;
 
-        private IStoreRepository _storeRepository;
-        private IMeRepository _meRepository;
-        private IOauthRespository _oauthRepository;
+        private IStoreResource _storeResource;
+        private IMeResource _meResource;
+        private IOauthResource _oauthResource;
 
         /// <summary>
         /// Construct the repository with an endpoint
@@ -34,26 +34,26 @@ namespace TictailSharp.Api.Implentation
         /// <summary>
         /// Store ressources within the repository
         /// </summary>
-        public IStoreRepository Stores
+        public IStoreResource Stores
         {
-            get { return _storeRepository ?? (_storeRepository = new StoreRepository(_client)); }
+            get { return _storeResource ?? (_storeResource = new StoreResource(_client)); }
         }
 
         /// <summary>
         /// The Me ressouce
         /// </summary>
-        public IMeRepository Me
+        public IMeResource Me
         {
-            get { return _meRepository ?? (_meRepository = new MeRepository(_client)); }
+            get { return _meResource ?? (_meResource = new MeResource(_client)); }
         }
 
         /// <summary>
         /// The Oauth ressource
         /// </summary>
-        public IOauthRespository Oauth
+        public IOauthResource Oauth
         {
             //TODO: This should be removed is not part of the repository
-            get { return _oauthRepository ?? (_oauthRepository = new OauthRepository(_client)); }
+            get { return _oauthResource ?? (_oauthResource = new OauthResource(_client)); }
         }
     }
 }

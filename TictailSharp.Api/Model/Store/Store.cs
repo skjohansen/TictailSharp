@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using TictailSharp.Api.Resources;
 
 namespace TictailSharp.Api.Model.Store
 {
@@ -11,37 +12,37 @@ namespace TictailSharp.Api.Model.Store
         /// Repository of products
         /// </summary>
         [JsonIgnore]
-        public IProductRepository Products { get; set; }
+        public IProductResource Products { get; set; }
 
         /// <summary>
         /// Repository of theme
         /// </summary>
         [JsonIgnore]
-        public IThemeRepository Theme { get; set; }
+        public IThemeResource Theme { get; set; }
 
         /// <summary>
         /// Repository of categories
         /// </summary>
         [JsonIgnore]
-        public ICategoryRepository Categories { get; set; }
+        public ICategoryResource Categories { get; set; }
 
         /// <summary>
         /// Repository of customers
         /// </summary>
         [JsonIgnore]
-        public ICustomerRepository Customers { get; set; }
+        public ICustomerResource Customers { get; set; }
 
         /// <summary>
         /// Repository of followers
         /// </summary>
         [JsonIgnore]
-        public IFollowerRepository Followers { get; set; }
+        public IFollowerResource Followers { get; set; }
 
         /// <summary>
         /// Repository of orders
         /// </summary>
         [JsonIgnore]
-        public IOrderRepository Orders { get; set; }
+        public IOrderResource Orders { get; set; }
 
         //TODO: card
 
