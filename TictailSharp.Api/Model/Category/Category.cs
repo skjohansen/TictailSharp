@@ -24,6 +24,11 @@ namespace TictailSharp.Api.Model.Category
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
 
+        /// <summary>
+        /// Number of products in this category
+        /// </summary>
+        [JsonProperty(PropertyName = "product_count")]
+        public int ProductCount { get; set; }
 
         /// <summary>
         /// Parent id of this category, null for top level categories
@@ -39,10 +44,11 @@ namespace TictailSharp.Api.Model.Category
         public int Position { get; set; }
 
         /// <summary>
-        /// Number of products in this category
+        /// The slug for this category
         /// </summary>
-        [JsonProperty(PropertyName = "product_count")]
-        public int ProductCount { get; set; }
+        /// <example>basil</example>
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
         
         /// <summary>
         /// Timestamp when this product was created
@@ -67,8 +73,10 @@ namespace TictailSharp.Api.Model.Category
             var toString = new StringBuilder();
             toString.Append("ID: ").AppendLine(Id);
             toString.Append("Title: ").AppendLine(Title);
+            toString.Append("ProductCount: ").AppendLine(ProductCount.ToString(CultureInfo.InvariantCulture));
             toString.Append("ParentId: ").AppendLine(ParentId);
             toString.Append("Position: ").AppendLine(Position.ToString(CultureInfo.InvariantCulture));
+            toString.Append("Slug: ").AppendLine(Slug);
             toString.Append("CreatedAt: ").AppendLine(CreatedAt.ToString(CultureInfo.InvariantCulture));
             if (ModifiedAt.HasValue)
             {

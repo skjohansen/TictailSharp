@@ -24,7 +24,13 @@ namespace TictailSharp.Api.Model.Order
         /// Street of the receivers address
         /// </summary>
         [JsonProperty(PropertyName = "street")]
-        public string Street { get; set; }
+        public string Street1 { get; set; }
+
+        /// <summary>
+        /// Second address line of the order receiver
+        /// </summary>
+        [JsonProperty(PropertyName = "street_line2")]
+        public string Street2 { get; set; }
 
         /// <summary>
         /// State of the receivers address
@@ -59,7 +65,8 @@ namespace TictailSharp.Api.Model.Order
             var toString = new StringBuilder();
             toString.Append("Name: ").AppendLine(Name);
             toString.Append("Phone: ").AppendLine(Phone);
-            toString.Append("Street: ").AppendLine(Street);
+            toString.Append("Street1: ").AppendLine(Street1);
+            toString.Append("Street2: ").AppendLine(Street2);
             toString.Append("State: ").AppendLine(State);
             toString.Append("City: ").AppendLine(City);
             toString.Append("Zip: ").AppendLine(Zip);

@@ -18,6 +18,13 @@ namespace TictailSharp.Api.Model.Order
         public string Id { get; set; }
 
         /// <summary>
+        /// Is this order completed and no action is required by the storekeeper?
+        /// </summary>
+        [JsonProperty("completed")]
+        public string Completed { get; set; }
+        
+    
+        /// <summary>
         /// Order number as seen in the Dashboard
         /// </summary>
         [JsonProperty(PropertyName = "number")]
@@ -48,23 +55,22 @@ namespace TictailSharp.Api.Model.Order
         public string Note { get; set; }
 
         /// <summary>
-        /// Do prices for items and shipping include VAT?
-        /// </summary>
-        [JsonProperty(PropertyName = "prices_include_vat")]
-        public bool PricesIncludeVat { get; set; }
-
-        /// <summary>
         /// Transaction details, see transaction object for details
         /// </summary>
         [JsonProperty(PropertyName = "transaction")]
         public Transaction Transaction { get; set; }
+
+        /// <summary>
+        /// Do prices for items and shipping include VAT?
+        /// </summary>
+        [JsonProperty(PropertyName = "prices_include_vat")]
+        public bool PricesIncludeVat { get; set; }
         
         /// <summary>
         /// Fullfilment details, see fullfilment object for details
         /// </summary>
         [JsonProperty(PropertyName = "fullfilment")]
         public Fullfillment Fullfillment { get; set; }
-
          
         /// <summary>
         /// Customer, see customer object for details
@@ -118,6 +124,7 @@ namespace TictailSharp.Api.Model.Order
         {
             var toString = new StringBuilder();
             toString.Append("ID: ").AppendLine(Id);
+            toString.Append("Completed: ").AppendLine(Completed);
             toString.Append("Number: ").AppendLine(Number.ToString(CultureInfo.InvariantCulture));
             toString.Append("Price: ").AppendLine(Price.ToString(CultureInfo.InvariantCulture));
             toString.Append("Currency: ").AppendLine(Currency);

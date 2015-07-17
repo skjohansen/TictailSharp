@@ -83,6 +83,12 @@ namespace TictailSharp.Api.Model
         public string Url { get; set; }
 
         /// <summary>
+        /// Store subdomain
+        /// </summary>
+        [JsonProperty("subdomain")]
+        public string Subdomain { get; set; }
+
+        /// <summary>
         /// Timestamp when this store was created
         /// </summary>
         [JsonProperty(PropertyName = "created_at")]
@@ -151,6 +157,7 @@ namespace TictailSharp.Api.Model
             // TODO:Wallpapers
             toString.Append("Description: ").AppendLine(Description);
             toString.Append("Url: ").AppendLine(Url);
+            toString.Append("Subdomain: ").AppendLine(Subdomain);
             if (CreatedAt.HasValue)
             {
                 toString.Append("CreatedAt: ").AppendLine(CreatedAt.Value.ToString());
@@ -163,6 +170,7 @@ namespace TictailSharp.Api.Model
             toString.Append("StorekeeperEmail: ").AppendLine(StorekeeperEmail);
             toString.Append("Sandbox: ").AppendLine(Sandbox.ToString());
             toString.Append("DashboardUrl: ").AppendLine(DashboardUrl);
+            toString.Append("AppstoreCurrency: ").AppendLine(AppstoreCurrency);
             return toString.ToString();
         }
     }

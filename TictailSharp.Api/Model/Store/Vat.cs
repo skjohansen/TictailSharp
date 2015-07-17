@@ -8,6 +8,7 @@ namespace TictailSharp.Api.Model.Store
     /// </summary>
     public class Vat : BaseVat
     {
+        //BaseVat contains: rate
 
         /// <summary>
         /// The region where VAT is applicable

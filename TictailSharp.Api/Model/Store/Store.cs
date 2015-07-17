@@ -8,6 +8,9 @@ namespace TictailSharp.Api.Model.Store
     /// </summary>
     public class Store : BaseStore
     {
+        // BaseStore contains : id, name, short_description, followers, currency, vat, language, country, logotype, wallpapers, description, url, subdomain, created_at, modified_at, contact_email, storekeeper_email, sandbox, dashboard_url, appstore_currency 
+
+    
         /// <summary>
         /// Repository of products
         /// </summary>

@@ -31,6 +31,13 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "store_name")]
         public string StoreName { get; set; }
 
+        
+        /// <summary>
+        /// Subdomain of the store this product belongs to
+        /// </summary>
+        [JsonProperty(PropertyName = "store_subdomain")]
+        public string StoreSubdomain { get; set; }
+
         /// <summary>
         /// URL of store this product belongs to
         /// </summary>
@@ -65,14 +72,6 @@ namespace TictailSharp.Api.Model
         [JsonProperty(PropertyName = "price")]
         public uint Price { get; set; }
 
-        ///// <summary>
-        ///// Whether or not applicable sales tax/VAT is included in this product's price
-        ///// </summary>
-        ///// <example>True</example>
-        //[JsonProperty(PropertyName = "price_includes_tax")]
-        //[Obsolete]
-        //public bool PriceIncludesTax { get; set; }
-
         /// <summary>
         /// Currency for this product as a three-letter code (ISO 4217)
         /// </summary>
@@ -99,8 +98,6 @@ namespace TictailSharp.Api.Model
         /// <example>2</example>
         [JsonProperty(PropertyName = "quantity")]
         public uint? Quantity { get; set; }
-
-
 
         /// <summary>
         /// List with the images of this product
@@ -136,6 +133,10 @@ namespace TictailSharp.Api.Model
         {
             var toString = new StringBuilder();
             toString.Append("ID: ").AppendLine(Id);
+            toString.Append("StoreId: ").AppendLine(StoreId);
+            toString.Append("StoreName: ").AppendLine(StoreName);
+            toString.Append("StoreSubdomain: ").AppendLine(StoreSubdomain);
+            toString.Append("StoreUrl: ").AppendLine(StoreUrl);
             toString.Append("Title: ").AppendLine(Title);
             toString.Append("Description: ").AppendLine(Description);
             toString.Append("Status: ").AppendLine(Status);
@@ -147,16 +148,17 @@ namespace TictailSharp.Api.Model
             {
                 toString.Append("Quantity: ").AppendLine(Quantity.Value.ToString(CultureInfo.InvariantCulture));
             }
-            toString.Append("CreatedAt: ").AppendLine(CreatedAt.ToString(CultureInfo.InvariantCulture));
-            if (ModifiedAt.HasValue)
-            {
-                toString.Append("ModifiedAt: ").AppendLine(ModifiedAt.Value.ToString(CultureInfo.InvariantCulture)).AppendLine();
-            }
             toString.AppendLine().Append("Images: ").AppendLine(Images.Count.ToString(CultureInfo.InvariantCulture));
             foreach (var image in Images)
             {
                 toString.AppendLine(image.ToString());
             }
+            toString.Append("CreatedAt: ").AppendLine(CreatedAt.ToString(CultureInfo.InvariantCulture));
+            if (ModifiedAt.HasValue)
+            {
+                toString.Append("ModifiedAt: ").AppendLine(ModifiedAt.Value.ToString(CultureInfo.InvariantCulture)).AppendLine();
+            }
+
 
             return toString.ToString();
         }

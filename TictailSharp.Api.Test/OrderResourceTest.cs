@@ -350,7 +350,7 @@ namespace TictailSharp.Api.Test
             Assert.NotNull(order.Fullfillment.Receiver);
             Assert.Equal("Cust mer", order.Fullfillment.Receiver.Name);
             Assert.Equal(null, order.Fullfillment.Receiver.Phone);
-            Assert.Equal("Sesamstreet 3", order.Fullfillment.Receiver.Street);
+            Assert.Equal("Sesamstreet 3", order.Fullfillment.Receiver.Street1);
             Assert.Equal("", order.Fullfillment.Receiver.State);
             Assert.Equal("SmurfCity", order.Fullfillment.Receiver.City);
             Assert.Equal("12 54", order.Fullfillment.Receiver.Zip);
@@ -633,7 +633,7 @@ namespace TictailSharp.Api.Test
             Assert.NotNull(order.Fullfillment.Receiver);
             Assert.Equal("Some Receiver", order.Fullfillment.Receiver.Name);
             Assert.Equal("+11 123456", order.Fullfillment.Receiver.Phone);
-            Assert.Equal("My street1", order.Fullfillment.Receiver.Street);
+            Assert.Equal("My street1", order.Fullfillment.Receiver.Street1);
             Assert.Equal("My state1", order.Fullfillment.Receiver.State);
             Assert.Equal("My city1", order.Fullfillment.Receiver.City);
             Assert.Equal("z1234", order.Fullfillment.Receiver.Zip);
