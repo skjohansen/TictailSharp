@@ -177,12 +177,12 @@ namespace TictailSharp.Api.Resources
             throw new NotImplementedException();
         }
 
-        public void Update(Product resource)
+        public Product Post(Product resource)
         {
             throw new NotImplementedException();
         }
 
-        public Product Post(Product resource)
+        public Product Patch(string resourceId, Product resource)
         {
             throw new NotImplementedException();
         }

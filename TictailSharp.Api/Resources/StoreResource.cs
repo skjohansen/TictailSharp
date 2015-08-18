@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using RestSharp;
@@ -75,10 +76,46 @@ namespace TictailSharp.Api.Resources
             return JsonConvert.DeserializeObject<Store>(data);
         }
 
-
-        public void Update(Store resource)
+        /// <summary>
+        /// Patch (Update) a store
+        /// </summary>
+        /// <param name="storeId">ID of store to patch</param>
+        /// <param name="resource">Values which should be updated, null are ignored</param>
+        public Store Patch(string storeId, PatchStore resource)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(storeId))
+            {
+                throw new Exception("You can't specify an empty storeId");
+            }
+
+            var request = new RestRequest("v1/stores/{storeId}", Method.PATCH);
+            request.AddUrlSegment("storeId", storeId);
+            request.RequestFormat = DataFormat.Json;
+            
+            var serializer = new JsonSerializer
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            string bodyContent;
+            using (var writer = new StringWriter())
+            {
+                serializer.Serialize(writer, resource);
+                bodyContent = writer.ToString();
+            }
+
+            request.AddParameter("application/json", bodyContent, ParameterType.RequestBody);
+            Store store;
+            try
+            {
+                store = DeserializeGet(_client.ExecuteRequest(request, HttpStatusCode.OK).Content);
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new Exception("No Store found with ID : " + storeId);
+            }
+
+            return store;
         }
     }
 }

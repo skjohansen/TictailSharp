@@ -38,10 +38,19 @@ namespace TictailSharp.Api.Test
             var repository = new TictailRepository(new TictailClientTest());
             return repository.Stores.DeserializeGet(value);
         }
-
-        public void Update(Store resource)
+        public Store Patch(string resourceId, PatchStore resource)
         {
-            throw new NotImplementedException();
+            const string tictailJsonReponse = "{" +
+                      "\"description\": \"A new description\"," +
+                      "}";
+
+
+            var endpointDummy = new TictailEndpoint(new Uri("https://api.somewhere.com"), "accesstoken_abcdefhiljklmnopqrstuvxuz");
+            var clientTest = new TictailClientTest(endpointDummy);
+            clientTest.Content = tictailJsonReponse;
+
+            var repository = new TictailRepository(clientTest);
+            return repository.Stores.Patch(resourceId, resource);
         }
         #endregion
 
@@ -129,8 +138,23 @@ namespace TictailSharp.Api.Test
 
             Assert.Equal("Not Found. You have requested this URI [/v1/stores/a123445] but did you mean /v1/stores/<id:store_id> or /v1/stores or /v1/stores/<id:store_id>/apps ?", ex.Message);
         }
-    
+
+        [Fact]
+        public void PatchStoreDescription_Ok_PatchStoreWithJustDescription()
+        {
+            var ps = new PatchStore()
+            {
+                Description = "A new description"
+            };
+
+            var store = Patch("abc", ps);
+            Assert.Equal(store.Description, ps.Description);
+
+        }
+
         #endregion
+
+
 
 
 

@@ -88,7 +88,7 @@ namespace TictailSharp.Api.Test
             throw new NotImplementedException();
         }
 
-        public void Update(Product resource)
+        public Product Patch(string resourceId, Product resource)
         {
             throw new NotImplementedException();
         }
@@ -258,6 +258,8 @@ namespace TictailSharp.Api.Test
                 yield return (T)iterator.Current;
             }
         }
+
+
 
 
 

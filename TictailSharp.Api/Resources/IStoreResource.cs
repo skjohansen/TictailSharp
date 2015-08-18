@@ -6,7 +6,7 @@ namespace TictailSharp.Api.Resources
     /// <summary>
     /// Store repository interface
     /// </summary>
-    public interface IStoreResource : IGetSpecific<Store>, IPatch<Store>
+    public interface IStoreResource : IGetSpecific<Store>, IPatch<PatchStore, Store>
     {
     }
 }

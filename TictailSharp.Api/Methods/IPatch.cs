@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TictailSharp.Api.Methods
 {
-    public interface IPatch<in TResource>
+    public interface IPatch<in TResource, out TOResource>
     {
-        void Update(TResource resource);
+        TOResource Patch(string resourceId, TResource resource);
     }
 }
