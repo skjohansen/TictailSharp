@@ -9,7 +9,7 @@ namespace TictailSharp.Api.Model.Product
     /// <summary>
     /// Image of an product
     /// </summary>
-    public struct Image
+    public class ProductImage : BaseProductImage
     {
         /// <summary>
         /// Unique identifier
@@ -28,18 +28,6 @@ namespace TictailSharp.Api.Model.Product
         /// </summary>
         [JsonProperty(PropertyName = "modified_at")]
         public DateTime ModifiedAt { get; set; }
-
-        /// <summary>
-        /// Width of original image
-        /// </summary>
-        [JsonProperty(PropertyName = "original_width")]
-        public uint OriginalWidth { get; set; }
-        
-        /// <summary>
-        /// Height of original image
-        /// </summary>
-        [JsonProperty(PropertyName = "original_height")]
-        public uint OriginalHeight { get; set; }
 
         /// <summary>
         /// The image URL

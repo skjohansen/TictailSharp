@@ -5,17 +5,13 @@ using Newtonsoft.Json;
 
 namespace TictailSharp.Api.Model.Product
 {
-    /// <summary>
-    /// Product
-    /// </summary>
-    public class Product : ExtendedProduct
+    public class PostProduct : BaseProduct
     {
-        /// <summary>
-        /// List with the different variations of this product, empty if no variations
-        /// </summary>
-        /// 
         [JsonProperty(PropertyName = "variations")]
-        public List<ProductVariation> Variations { get; set; }
+        public List<PostProductVariation> Variations { get; set; }
+
+        [JsonProperty(PropertyName = "images")]
+        public List<PostProductImage> Images { get; set; }
 
         /// <summary>
         /// Output all properties
@@ -29,6 +25,12 @@ namespace TictailSharp.Api.Model.Product
             foreach (var variation in Variations)
             {
                 toString.Append(variation.ToString());
+            }
+
+            toString.Append("Images: ").AppendLine(Images.Count.ToString(CultureInfo.InvariantCulture));
+            foreach (var image in Images)
+            {
+                toString.Append(image.ToString());
             }
 
             return toString.ToString();

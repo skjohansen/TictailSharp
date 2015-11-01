@@ -2,7 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using TictailSharp.Api.Implentation;
+using TictailSharp.Api.Model;
+using TictailSharp.Api.Model.Category;
 using TictailSharp.Api.Model.Product;
 using TictailSharp.Api.Resources;
 using TictailSharp.Api.Test.TestImplementation;
@@ -64,7 +67,7 @@ namespace TictailSharp.Api.Test
 
             // Prepare store content
             clientTest.Content = "{" +
-                        "\"id\": \"myStore\"," +
+                        "\"id\": \"somestore\"," +
                       "}";
 
             var repository = new TictailRepository(clientTest);
@@ -83,7 +86,7 @@ namespace TictailSharp.Api.Test
             return repository.DeserializeGet(value);
         }
 
-        public void UpdatePut(Product resource)
+        public void Put(Product resource)
         {
             throw new NotImplementedException();
         }
@@ -93,9 +96,43 @@ namespace TictailSharp.Api.Test
             throw new NotImplementedException();
         }
 
-        public Product Post(Product resource)
+        public Product Post(PostProduct resource)
         {
-            throw new NotImplementedException();
+            const string tictailJsonReponse = "{" +
+                                              "\"status\": \"published\", " +
+                                              "\"store_url\": \"http://somedomain.tictail.com\", " +
+                                              "\"description\": \"A new product\", " +
+                                              "\"store_name\": \"Somestore\", " +
+                                              "\"store_id\": \"acb\"," +
+                                              "\"unlimited\": true, " +
+                                              "\"created_at\": \"2013-07-08T20:01:02.123456\", " +
+                                              "\"title\": \"My new product\", " +
+                                              "\"modified_at\": \"2014-08-08T10:19:14.876543\", " +
+                                              "\"slug\": \"prod1\", " +
+                                              "\"price\": 132456, " +
+                                              "\"currency\": \"SEK\", " +
+                                              "\"store_subdomain\": 	\"somedomain\", " +
+                                              "\"likes\": 0, " +
+                                              "\"id\": \"1324a\","+ 
+                                              "\"variations\": [{\"title\": \"Variation 1\", \"modified_at\": \"2015-01-02T12:13:14.01345\", \"created_at\": \"2015-01-01T14:16:17.123456\", \"unlimited\": false, \"id\": \"CDEF\", \"quantity\": 12}]"+
+                                              "}";
+            //"images": [], 
+            //"categories": [], 
+
+            var endpointDummy = new TictailEndpoint(new Uri("https://api.somewhere.com"), "accesstoken_abcdefhiljklmnopqrstuvxuz");
+            var clientTest = new TictailClientTest(endpointDummy);
+
+            // Prepare store content
+            clientTest.Content = "{" +
+                    "\"id\": \"acb\"," +
+                  "}";
+            var repository = new TictailRepository(clientTest);
+            var store = repository.Stores["acb"];
+
+            // Prepare product content
+            clientTest.Content = tictailJsonReponse;
+            clientTest.StatusCode = HttpStatusCode.Created;
+            return store.Products.Post(resource);
         }
 
         #endregion
@@ -187,7 +224,7 @@ namespace TictailSharp.Api.Test
             Assert.Equal("678a", product.Id);
             Assert.Equal("Product1", product.Title);
             Assert.Equal("Nice product<br>", product.Description);
-            Assert.Equal("published", product.Status);
+            Assert.Equal(ProductStatus.Published, product.Status);
             Assert.Equal((uint)25000, product.Price);
             Assert.Equal("prod1", product.Slug);
             Assert.Equal(false, product.Unlimited);
@@ -245,8 +282,43 @@ namespace TictailSharp.Api.Test
             Assert.Equal(2, products.Count);
             Assert.Equal("Product1", products[0].Title);
             Assert.Equal("Nice product<br>", products[0].Description);
-            Assert.Equal("published", products[0].Status);
+            //Assert.Equal("published", products[0].Status);
+            Assert.Equal(ProductStatus.Published, products[0].Status);
             Assert.Equal("Product2", products[1].Title);
+        }
+
+        [Fact]
+        public void Post_NewProduct_TictailProduct()
+        {
+            var pp = new PostProduct()
+            {
+                Description = "A new product",
+                Title = "My new product",
+                Status = ProductStatus.Published,
+                Price = 132456,
+                Slug = "prod1",
+                Variations = new List<PostProductVariation>
+                {
+                 new PostProductVariation(){Quantity = 12, Title = "Variation 1", Unlimited = false}   
+                }
+                //Categories = new List<Category> { new Category() { } }
+            };
+
+            var product = Post(pp);
+            Assert.Equal(pp.Description, product.Description);
+            Assert.Equal(pp.Title, product.Title);
+            Assert.Equal(pp.Status, product.Status);
+            Assert.Equal(pp.Price, product.Price);
+            Assert.Equal(pp.Slug, product.Slug);
+            Assert.Equal("1324a", product.Id);
+            // Variations
+            Assert.Equal(1, product.Variations.Count);
+            Assert.Equal(pp.Variations[0].Quantity, product.Variations[0].Quantity);
+            Assert.Equal(pp.Variations[0].Title, product.Variations[0].Title);
+            Assert.Equal(pp.Variations[0].Unlimited, product.Variations[0].Unlimited);
+            Assert.Equal("CDEF", product.Variations[0].Id);
+            // Images
+            // Categories
         }
 
         #endregion

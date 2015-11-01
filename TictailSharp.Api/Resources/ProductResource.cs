@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using RestSharp;
 using TictailSharp.Api.Model.Product;
+using TictailSharp.Api.Model.Store;
 
 namespace TictailSharp.Api.Resources
 {
@@ -172,17 +174,65 @@ namespace TictailSharp.Api.Resources
             return JsonConvert.DeserializeObject<Product>(data);
         }
 
-        public void UpdatePut(Product resource)
+        /// <summary>
+        /// Update the position of a product (product_ids). Use PATCH to update the properties of a product
+        /// </summary>
+        /// <param name="product"></param>
+        public void Put(Product product)
         {
             throw new NotImplementedException();
         }
 
-        public Product Post(Product resource)
+        /// <summary>
+        /// Add a new product to this store (store_id)
+        /// </summary>
+        /// <param name="product">Product to be added to store</param>
+        /// <returns></returns>
+        public Product Post(PostProduct product)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(StoreId))
+            {
+                throw new Exception("You can't specify an empty storeId");
+            }
+
+            var request = new RestRequest("v1/stores/{storeId}/products", Method.POST);
+            request.AddUrlSegment("storeId", StoreId);
+            request.RequestFormat = DataFormat.Json;
+            
+            var serializer = new JsonSerializer
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            string bodyContent;
+            using (var writer = new StringWriter())
+            {
+                serializer.Serialize(writer, product);
+                bodyContent = writer.ToString();
+            }
+
+            request.AddParameter("application/json", bodyContent, ParameterType.RequestBody);
+
+            Product createdProduct;
+            try
+            {
+                createdProduct = DeserializeGet(_client.ExecuteRequest(request, HttpStatusCode.Created).Content);
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new Exception("No Store found with ID : " + StoreId);
+            }
+
+            return createdProduct;
         }
 
-        public Product Patch(string resourceId, Product resource)
+        /// <summary>
+        /// Update a product (product_ids) in this store (store_id). Supports partial updates, where values not specified in the request body are not overwritten.
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public Product Patch(string productId, Product product)
         {
             throw new NotImplementedException();
         }

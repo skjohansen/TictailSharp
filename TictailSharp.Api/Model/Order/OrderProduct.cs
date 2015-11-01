@@ -6,7 +6,7 @@ namespace TictailSharp.Api.Model.Order
     /// <summary>
     /// Product which is part of an order
     /// </summary>
-    public class OrderProduct : BaseProduct
+    public class OrderProduct : ExtendedProduct
     {
         /// <summary>
         /// Different variations on the product

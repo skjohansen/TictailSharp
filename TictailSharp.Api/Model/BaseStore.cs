@@ -65,7 +65,7 @@ namespace TictailSharp.Api.Model
         /// List with the logotype
         /// </summary>
         [JsonProperty(PropertyName = "logotype")]
-        public List<Image> Logotypes { get; set; }
+        public List<ProductImage> Logotypes { get; set; }
 
         //Map of wallpapers by their categories
         //TODO: Wallpapers

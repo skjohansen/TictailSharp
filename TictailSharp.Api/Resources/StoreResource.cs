@@ -63,6 +63,7 @@ namespace TictailSharp.Api.Resources
             store.Customers = new CustomerResource(_client, storeId);
             store.Followers = new FollowerResource(_client, storeId);
             store.Orders = new OrderResource(_client, storeId);
+            store.Cards = new CardResource(_client, storeId);
             return store;
         }
 
@@ -80,8 +81,8 @@ namespace TictailSharp.Api.Resources
         /// Patch (Update) a store
         /// </summary>
         /// <param name="storeId">ID of store to patch</param>
-        /// <param name="resource">Values which should be updated, null are ignored</param>
-        public Store Patch(string storeId, PatchStore resource)
+        /// <param name="store">Values which should be updated, null are ignored</param>
+        public Store Patch(string storeId, PatchStore store)
         {
             if (string.IsNullOrEmpty(storeId))
             {
@@ -100,22 +101,22 @@ namespace TictailSharp.Api.Resources
             string bodyContent;
             using (var writer = new StringWriter())
             {
-                serializer.Serialize(writer, resource);
+                serializer.Serialize(writer, store);
                 bodyContent = writer.ToString();
             }
 
             request.AddParameter("application/json", bodyContent, ParameterType.RequestBody);
-            Store store;
+            Store patchedStore;
             try
             {
-                store = DeserializeGet(_client.ExecuteRequest(request, HttpStatusCode.OK).Content);
+                patchedStore = DeserializeGet(_client.ExecuteRequest(request, HttpStatusCode.OK).Content);
             }
             catch (KeyNotFoundException)
             {
                 throw new Exception("No Store found with ID : " + storeId);
             }
 
-            return store;
+            return patchedStore;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TictailSharp.Api.Implentation;
+using TictailSharp.Api.Model;
 using TictailSharp.Api.Model.Order;
 using TictailSharp.Api.Resources;
 using TictailSharp.Api.Test.TestImplementation;
@@ -391,7 +392,7 @@ namespace TictailSharp.Api.Test
             Assert.Equal("nh6", order.Items[0].Product.StoreId);
             Assert.Equal("Fanny Castelius - Sovshorts Ljusrosa", order.Items[0].Product.Title);
             Assert.Equal("Sovshorts&nbsp;smalrandiga sovshorts. Dekorativ spetskant \nnedtill, res\u00e5r i midjan samt ett band att knyta. Sovshortsen \u00e4r \ntillverkade i exklusivt Italiensk tyg av mycket god kvalitet. \nSovshortsen \u00e4r normala i storleken.<br><i><br>\"Fanny Castelius producerar eleganta och tidl\u00f6sa kl\u00e4desplagg med de mest kvalitativa av tyger f\u00f6r kvinnor som vill utstr\u00e5la sin inre elegans och sk\u00f6nhet. Fanny Castelius tror p\u00e5</i><i>&nbsp;p\u00e5 att denna kvinna alltid \u00e4r en sk\u00f6nhet, b\u00e5de i fram och i motg\u00e5ng.\"</i><br><br>", order.Items[0].Product.Description);
-            Assert.Equal("published", order.Items[0].Product.Status);
+            Assert.Equal(ProductStatus.Published, order.Items[0].Product.Status);
             Assert.Equal((uint)74100, order.Items[0].Product.Price);
             Assert.Equal("SEK", order.Items[0].Product.Currency);
             Assert.Equal("fanny-castelius-sovshorts-ljusrosa", order.Items[0].Product.Slug);
@@ -669,7 +670,8 @@ namespace TictailSharp.Api.Test
             Assert.Equal("nmo23", order.Items[0].Product.Id);
             Assert.Equal("Product1", order.Items[0].Product.Title);
             Assert.Equal("Nice product<br>", order.Items[0].Product.Description);
-            Assert.Equal("published", order.Items[0].Product.Status);
+            //Assert.Equal("published", order.Items[0].Product.Status);
+            Assert.Equal(ProductStatus.Published, order.Items[0].Product.Status);
             Assert.Equal((uint)25000, order.Items[0].Product.Price);
             Assert.Equal("SEK", order.Items[0].Product.Currency);
             Assert.Equal("prod1", order.Items[0].Product.Slug);
@@ -685,7 +687,8 @@ namespace TictailSharp.Api.Test
             Assert.Equal("prq12", order.Items[1].Product.Id);
             Assert.Equal("Product2", order.Items[1].Product.Title);
             Assert.Equal("Other Nice product<br>", order.Items[1].Product.Description);
-            Assert.Equal("unpublished", order.Items[1].Product.Status);
+            //Assert.Equal("unpublished", order.Items[1].Product.Status);
+            Assert.Equal(ProductStatus.Unpublished, order.Items[1].Product.Status);
             Assert.Equal((uint)24600, order.Items[1].Product.Price);
             Assert.Equal("EUR", order.Items[1].Product.Currency);
             Assert.Equal("prod2", order.Items[1].Product.Slug);

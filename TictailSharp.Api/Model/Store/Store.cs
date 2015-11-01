@@ -47,7 +47,10 @@ namespace TictailSharp.Api.Model.Store
         [JsonIgnore]
         public IOrderResource Orders { get; set; }
 
-        //TODO: card
-
+        /// <summary>
+        /// Repository of cards
+        /// </summary>
+        [JsonIgnore]
+        public ICardResource Cards { get; set; }
     }
 }

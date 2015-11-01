@@ -8,6 +8,6 @@ namespace TictailSharp.Api.Methods
 {
     public interface IPut<in TResource>
     {
-        void UpdatePut(TResource resource);
+        void Put(TResource resource);
     }
 }

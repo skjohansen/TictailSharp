@@ -48,6 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\LowercaseConverter.cs" />
+    <Compile Include="Model\Card\CardType.cs" />
+    <Compile Include="Model\Card\PostCard.cs" />
+    <Compile Include="Model\ExtendedProduct.cs" />
+    <Compile Include="Model\ExtendedVariation.cs" />
+    <Compile Include="Model\ProductStatus.cs" />
+    <Compile Include="Model\Product\BaseProductImage.cs" />
+    <Compile Include="Model\Product\PostProduct.cs" />
+    <Compile Include="Model\Product\PostProductImage.cs" />
+    <Compile Include="Model\Product\PostProductVariation.cs" />
     <Compile Include="Model\Store\PatchStore.cs" />
     <Compile Include="Resources\ICardResource.cs" />
     <Compile Include="Resources\ICategoryResource.cs" />
@@ -81,13 +91,13 @@
     <Compile Include="Model\BaseProduct.cs" />
     <Compile Include="Model\BaseStore.cs" />
     <Compile Include="Model\BaseVat.cs" />
-    <Compile Include="Model\Card\Card.cs" />
+    <Compile Include="Model\Card\GetCard.cs" />
     <Compile Include="Model\Category\Category.cs" />
     <Compile Include="Model\Customer\Customer.cs" />
     <Compile Include="Model\Order\Discount.cs" />
     <Compile Include="Model\Follower\Follower.cs" />
     <Compile Include="Model\Order\Fullfillment.cs" />
-    <Compile Include="Model\Product\Image.cs" />
+    <Compile Include="Model\Product\ProductImage.cs" />
     <Compile Include="Model\BaseItem.cs" />
     <Compile Include="Model\Oauth\Oauth.cs" />
     <Compile Include="Model\Order\Order.cs" />
@@ -101,7 +111,7 @@
     <Compile Include="Model\Me\Me.cs" />
     <Compile Include="Model\Theme\Theme.cs" />
     <Compile Include="Model\Order\Transaction.cs" />
-    <Compile Include="Model\Product\Variation.cs" />
+    <Compile Include="Model\Product\ProductVariation.cs" />
     <Compile Include="Model\Store\Vat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\CardResource.cs" />
