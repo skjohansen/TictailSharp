@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/i79c9w42nvwi6o67?svg=true)](https://ci.appveyor.com/project/StephanJohansen/tictailsharp)
+
 This is an unofficial OpenSource .NET-implementation of the [Tictail API](https://tictail.com/developers/documentation/api-reference/), available under MIT License.  
 
 [Download via NuGet](https://www.nuget.org/packages/TictailSharp/)
