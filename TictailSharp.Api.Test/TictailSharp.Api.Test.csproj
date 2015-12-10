@@ -45,7 +45,7 @@
       <HintPath>..\packages\ApprovalUtilities.3.0.8\lib\net45\ApprovalUtilities.Net45.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Development\Tictail.net client\packages\RestSharp.105.2.1\lib\net45\RestSharp.dll</HintPath>
+      <HintPath>..\packages\RestSharp.105.2.1\lib\net45\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
